@@ -1,0 +1,57 @@
+Test Plan: RESTful Booker API
+Test Plan Identifier
+TP-RESTBOOKER-API-001
+Introduction
+This test plan outlines the testing approach for the RESTful Booker API, a sample booking system with endpoints for user authentication, booking management (Create, Read, Update, Delete), and health checks.
+Objectives
+- Validate all endpoints respond with correct HTTP status codes and expected outputs.
+- Ensure secure and correct behavior on protected routes.
+- Verify CRUD operations on booking resources.
+- Test edge cases and error handling.
+Scope
+In Scope:
+- Authentication (/auth)
+- Booking CRUD operations
+- Health check (/ping)
+Out of Scope:
+- Integration with UI or external systems
+Test Environment
+- API Base URL: https://restful-booker.herokuapp.com
+- Protocol: HTTPS
+- Tools: Postman / RestAssured / JMeter / Newman
+- Authentication: Basic Auth / Token via Cookie header
+Test Items
+- /auth (POST)
+- /booking (GET, POST)
+- /booking/:id (GET, PUT, PATCH, DELETE)
+- /ping (GET)
+Entry Criteria
+- API server is available
+- Tools like Postman are installed
+- Auth credentials are known
+Exit Criteria
+- All critical test cases pass
+- Bugs, if any, are logged and addressed
+- Test report is reviewed and shared
+Deliverables
+- Test Plan
+- Postman Collection or Test Scripts
+- Test Execution Report
+- Bug Log
+Roles and Responsibilities
+QA/Test Engineer: Design and execute test cases
+Developer: Fix bugs
+QA Lead: Approve plan and verify results
+Risks and Mitigations
+- Heroku API downtime → Retry later
+- Rate limiting → Space out test runs
+- Token expiry → Regenerate token
+Test Scenarios and Sample Test Cases
+TC ID	Test Case	Input	Expected Result
+TC001	Valid login	admin/password123	200 OK + Token
+TC004	Get all booking IDs	No input	200 OK + list
+TC008	Create booking with valid payload	JSON body	200 OK + booking ID
+TC011	Full update with token (PUT)	Valid token + JSON body	200 OK + updated booking
+TC014	Delete booking with token	Token in Cookie header	201 Created
+TC017	Ping the server	GET /ping	201 Created
+
