@@ -1,0 +1,95 @@
+ Test Plan document for the SOAP API operation IsValidISBN10.
+________________________________________
+✅ Test Plan: SOAP API - IsValidISBN10
+1. Test Plan Identifier
+TP-ISBN-API-001
+2. Introduction
+This test plan is for validating the functionality of the IsValidISBN10 SOAP web service provided by webservices.daehosting.com. The service determines whether a given string is a valid ISBN-10 number.
+________________________________________
+3. Objective
+To verify that the SOAP API operation IsValidISBN10 correctly validates a given 10-digit ISBN input (with support for trailing 'X') and returns a boolean indicating validity.
+________________________________________
+4. Scope
+●	✔️ In Scope:
+
+○	Validation of correct and incorrect ISBN-10 formats
+
+○	Validating SOAP 1.1, SOAP 1.2 request structure and responses
+
+○	Testing boundary and edge cases
+
+●	❌ Out of Scope:
+
+○	ISBN-13 validation
+
+○	REST or JSON-based services outside of this SOAP operation
+
+________________________________________
+5. Test Items
+●	Operation: IsValidISBN10
+
+●	Endpoint: http://webservices.daehosting.com/services/isbnservice.wso
+
+●	Method: POST
+
+●	Protocols: SOAP 1.1, SOAP 1.2
+
+________________________________________
+6. Test Environment
+Component	Value
+Host	webservices.daehosting.com
+Environment	Public test environment (assumed stable)
+Tool for Testing	SoapUI / Postman (SOAP), or custom script
+Protocol	HTTP POST with text/xml or application/soap+xml
+Authentication	None
+________________________________________
+7. Test Scenarios & Test Cases
+Test Case ID	Description	Input sISBN	Expected Result
+TC001	Valid ISBN-10 with digits	0471958697	true
+TC002	Valid ISBN-10 ending in X	0306406152	true
+TC003	Valid ISBN-10 with X as checksum	030640615X	true
+TC004	Invalid ISBN-10 (wrong checksum)	0471958696	false
+TC005	Invalid length (less than 10 digits)	1234567	false
+TC006	Invalid characters	ABCDE12345	false
+TC007	Empty string	``	false
+TC008	ISBN with special characters	1234-567890	false
+________________________________________
+8. Entry Criteria
+●	Access to the testable endpoint
+
+●	SoapUI/Postman or API test setup completed
+
+●	Test data (valid and invalid ISBNs) available
+
+________________________________________
+9. Exit Criteria
+●	All high-priority test cases are executed
+
+●	All critical bugs are fixed or documented
+
+●	Final test summary report created
+
+________________________________________
+10. Test Deliverables
+●	Test Plan (this document)
+
+●	Test Cases (Excel or test suite in SoapUI/Postman)
+
+●	Test Execution Report
+
+●	Defect Logs (if any)
+
+________________________________________
+11. Roles & Responsibilities
+Role	Responsibility
+QA/Test Engineer	Design & execute test cases
+Developer	Fix defects if identified
+QA Lead	Review plan, monitor test progress
+________________________________________
+12. Risks and Mitigation
+Risk	Mitigation
+Service downtime	Use mock endpoints or reschedule tests
+No clear documentation on edge cases	Validate against multiple ISBN examples
+________________________________________
+
+
